@@ -12,7 +12,6 @@ type Store struct{
 	db *sql.DB
 }
 
-
 //  creates a new Store 
 func NewStore(db *sql.DB) *Store{
 	return &Store{
@@ -66,9 +65,6 @@ func (store *Store) TransferTx(ctx context.Context, arg TransferTxParams)(Transf
 	err := store.execTx(ctx, func(q *Queries) error{
 		var err error
 
-		// txName := ctx.Value(txKey)
-
-		// fmt.Println(txName,"creare transfer")
 		result.Transfer, err = q.CreateTransfers(ctx, CreateTransfersParams{
 			FromAccountID: arg.FromAccountID,
 			ToAccountID: arg.ToAccountID,
@@ -78,7 +74,6 @@ func (store *Store) TransferTx(ctx context.Context, arg TransferTxParams)(Transf
 			return err
 		}
 
-		// fmt.Println(txName,"creare entry 1")
 		result.FromEntry, err = q.CreateEntries(ctx,CreateEntriesParams{
 			AccountID: arg.FromAccountID,
 			Amount: -arg.Amount,
@@ -87,8 +82,6 @@ func (store *Store) TransferTx(ctx context.Context, arg TransferTxParams)(Transf
 			return err
 		}
 
-
-		// fmt.Println(txName,"creare entry 2")
 		result.ToEntry, err = q.CreateEntries(ctx,CreateEntriesParams{
 			AccountID: arg.ToAccountID,
 			Amount: arg.Amount,
@@ -98,8 +91,6 @@ func (store *Store) TransferTx(ctx context.Context, arg TransferTxParams)(Transf
 		}
 
 		// getaccount -> update account balance
-
-		// fmt.Println(txName,"update account 1")
 		if(arg.FromAccountID < arg.ToAccountID){
 			result.FromAccount, result.ToAccount,err = addMoney(ctx,q, arg.FromAccountID, -arg.Amount, arg.ToAccountID, arg.Amount)
 		}else{
