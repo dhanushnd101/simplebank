@@ -19,7 +19,7 @@ jobs:
         go-version: 1.18
 
     - name: Check out code into the Go module dir
-      run: actions/checkout@v2
+      run: actions/checkout@v3
 
     - name: Test
       run: make test
