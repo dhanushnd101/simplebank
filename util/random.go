@@ -3,6 +3,7 @@ import(
 	"math/rand"
 	"time"
 	"strings"
+	"fmt"
 )
 const alphabet="abcdefghijklmnopqrstuvwxyz"
 
@@ -39,7 +40,12 @@ func RandomMoney() int64{
 
 // RandomCurrency generates random currency
 func RandomCurrency() string{
-	currency :=[]string{"USD","EUR","INR"}
+	currency :=[]string{USD,INR,EUR}
 	n:= len(currency)
 	return currency[rand.Intn(n)]
+}
+
+//RandomEmail generates random emails
+func RandomEmail() string{
+	return fmt.Sprintf("%s@email.com", RandomeString(6))
 }
