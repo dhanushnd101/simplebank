@@ -72,9 +72,9 @@ func TestGetUserAPI(t *testing.T){
 					Email: user.Email,
 				} 
 				store.EXPECT().
-				CreateUser(gomock.Any(),EqCreateUserParams(arg,password) ).
-				Times(1).
-				Return(user,nil)
+					CreateUser(gomock.Any(),EqCreateUserParams(arg,password) ).
+					Times(1).
+					Return(user,nil)
 			},
 			checkResonse: func(t *testing.T, recorder *httptest.ResponseRecorder){
 				require.Equal(t, http.StatusOK, recorder.Code)
