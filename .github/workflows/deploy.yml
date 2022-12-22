@@ -51,4 +51,4 @@ jobs:
         kubectl apply -f eks/aws-auth.yaml
         kubectl apply -f eks/deployment.yaml
         kubectl apply -f eks/service.yaml
-      # Should have hadded issuer.yaml and ingress.yaml [Backend 33,34,35]
+      # Should have added issuer.yaml and ingress.yaml [Backend 33,34,35]
